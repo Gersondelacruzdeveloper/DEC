@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muscle Pain Cream Catalog</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(0, 163, 255, 0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 255, 163, 0.12), transparent 30%),
+        linear-gradient(135deg, #0f172a, #111827, #1e293b);
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      font-size: 1.05rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      min-height: 430px;
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(0, 195, 255, 0.28), transparent 70%);
+      top: -40px;
+      right: -30px;
+      pointer-events: none;
+    }
+
+    .product-card::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
+      bottom: -30px;
+      left: -20px;
+      pointer-events: none;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .product-card.selected {
+      outline: 2px solid #22d3ee;
+      box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.15), 0 25px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.16);
+      color: #67e8f9;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 18px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 180px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 4rem;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      transform: translateZ(30px);
+    }
+
+    .product-card h2 {
+      font-size: 1.55rem;
+      margin-bottom: 10px;
+      transform: translateZ(20px);
+    }
+
+    .product-card p {
+      color: #cbd5e1;
+      line-height: 1.65;
+      font-size: 0.98rem;
+      margin-bottom: 18px;
+      transform: translateZ(18px);
+    }
+
+    .benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+      transform: translateZ(15px);
+    }
+
+    .benefits span {
+      background: rgba(255,255,255,0.08);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      transform: translateZ(20px);
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .price small {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .select-btn {
+      background: linear-gradient(135deg, #22d3ee, #06b6d4);
+      color: #0f172a;
+      border: none;
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .select-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .checkout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .checkout-box,
+    .summary-box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .checkout-box h3,
+    .summary-box h3 {
+      font-size: 1.45rem;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .field input::placeholder {
+      color: #94a3b8;
+    }
+
+    .field select option {
+      color: #111827;
+    }
+
+    .qty-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .qty-btn:hover {
+      background: rgba(255,255,255,0.18);
+      transform: scale(1.05);
+    }
+
+    .qty-value {
+      min-width: 46px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 14px;
+      color: #e5e7eb;
+    }
+
+    .summary-line.total {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .buy-btn {
+      width: 100%;
+      margin-top: 22px;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #10b981, #22c55e);
+      color: white;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .buy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.25);
+    }
+
+    .note {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(34, 197, 94, 0.16);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #bbf7d0;
+      font-weight: 700;
+    }
+    .product-image img{
+        width: 150px;
+        height:fit-content;
+   
+
+    }
+
+    @media (max-width: 900px) {
+      .checkout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <h1>Muscle Pain Relief Catalog</h1>
+      <p>
+        Choose your ideal muscle pain cream. Fast relief, modern formula, and a smooth shopping experience.
+      </p>
+    </section>
+
+    <section class="catalog">
+      <div class="product-card selected" data-id="0">
+        <div class="badge">Best Seller</div>
+        <div class="product-image">
+            <img src="./images/IMG_4990.png">
+        </div>
+        <h2>Arctic Relief Cream</h2>
+        <p>
+          Cooling muscle pain cream designed for fast relief after workouts, body tension, and sore joints.
+        </p>
+        <div class="benefits">
+          <span>Cooling Effect</span>
+          <span>Fast Relief</span>
+          <span>Sports Recovery</span>
+        </div>
+        <div class="bottom-row">
+          <div class="price">$650 <small>/ 100ml</small></div>
+          <button class="select-btn">Choose</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-id="1">
+        <div class="badge">Hot Therapy</div>
+        <div class="product-image">
+        <img src="./images/IMG_4991.jpeg">
+        </div>
+        <h2>Heat Muscle Balm</h2>
+        <p>
+          Warming cream that helps relax tense muscles and supports comfort for shoulders, legs, and back pain.
+        </p>
+        <div class="benefits">
+          <span>Warming Effect</span>
+          <span>Deep Comfort</span>
+          <span>Back & Neck</span>
+        </div>
+        <div class="bottom-row">
+          <div class="price">$650 <small>/ 120ml</small></div>
+          <button class="select-btn">Choose</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="checkout">
+      <div class="checkout-box">
+        <h3>Choose & Buy</h3>
+
+        <div class="field">
+          <label for="productSelect">Product</label>
+          <select id="productSelect">
+            <option value="0">Arctic Relief Cream - $24.99</option>
+            <option value="1">Heat Muscle Balm - $29.99</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Quantity</label>
+          <div class="qty-wrap">
+            <button class="qty-btn" id="minusBtn">−</button>
+            <div class="qty-value" id="qtyValue">1</div>
+            <button class="qty-btn" id="plusBtn">+</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="customerName">Full Name</label>
+          <input type="text" id="customerName" placeholder="Enter your full name" />
+        </div>
+
+        <div class="field">
+          <label for="customerEmail">Email</label>
+          <input type="email" id="customerEmail" placeholder="Enter your email" />
+        </div>
+
+        <button class="buy-btn" id="buyBtn">Buy Now</button>
+
+        <div class="success-message" id="successMessage">
+          Your order was placed successfully!
+        </div>
+
+        <p class="note">
+          This is a front-end demo. You can later connect it to Stripe, PayPal, or your backend.
+        </p>
+      </div>
+
+      <div class="summary-box">
+        <h3>Order Summary</h3>
+        <div class="summary-line">
+          <span>Selected Product</span>
+          <span id="summaryProduct">Arctic Relief Cream</span>
+        </div>
+        <div class="summary-line">
+          <span>Price</span>
+          <span id="summaryPrice">$24.99</span>
+        </div>
+        <div class="summary-line">
+          <span>Quantity</span>
+          <span id="summaryQty">1</span>
+        </div>
+        <div class="summary-line total">
+          <span>Total</span>
+          <span id="summaryTotal">$24.99</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const products = [
+      {
+        name: "Arctic Relief Cream",
+        price: 24.99
+      },
+      {
+        name: "Heat Muscle Balm",
+        price: 29.99
+      }
+    ];
+
+    let selectedProduct = 0;
+    let quantity = 1;
+
+    const cards = document.querySelectorAll(".product-card");
+    const productSelect = document.getElementById("productSelect");
+    const qtyValue = document.getElementById("qtyValue");
+    const plusBtn = document.getElementById("plusBtn");
+    const minusBtn = document.getElementById("minusBtn");
+    const summaryProduct = document.getElementById("summaryProduct");
+    const summaryPrice = document.getElementById("summaryPrice");
+    const summaryQty = document.getElementById("summaryQty");
+    const summaryTotal = document.getElementById("summaryTotal");
+    const buyBtn = document.getElementById("buyBtn");
+    const successMessage = document.getElementById("successMessage");
+    const customerName = document.getElementById("customerName");
+    const customerEmail = document.getElementById("customerEmail");
+
+    function updateSummary() {
+      const product = products[selectedProduct];
+      const total = (product.price * quantity).toFixed(2);
+
+      summaryProduct.textContent = product.name;
+      summaryPrice.textContent = `$${product.price.toFixed(2)}`;
+      summaryQty.textContent = quantity;
+      summaryTotal.textContent = `$${total}`;
+      qtyValue.textContent = quantity;
+      productSelect.value = selectedProduct;
+    }
+
+    function selectProduct(index) {
+      selectedProduct = index;
+      cards.forEach((card, i) => {
+        card.classList.toggle("selected", i === index);
+      });
+      updateSummary();
+    }
+
+    cards.forEach((card, index) => {
+      card.addEventListener("click", () => {
+        selectProduct(index);
+      });
+
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+      });
+    });
+
+    productSelect.addEventListener("change", (e) => {
+      selectProduct(Number(e.target.value));
+    });
+
+    plusBtn.addEventListener("click", () => {
+      quantity++;
+      updateSummary();
+    });
+
+    minusBtn.addEventListener("click", () => {
+      if (quantity > 1) {
+        quantity--;
+        updateSummary();
+      }
+    });
+
+    buyBtn.addEventListener("click", () => {
+      const name = customerName.value.trim();
+      const email = customerEmail.value.trim();
+
+      if (!name || !email) {
+        alert("Please enter your full name and email.");
+        return;
+      }
+
+      successMessage.style.display = "block";
+
+      setTimeout(() => {
+        successMessage.style.display = "none";
+      }, 3000);
+
+      console.log("Order placed:", {
+        product: products[selectedProduct].name,
+        price: products[selectedProduct].price,
+        quantity,
+        customerName: name,
+        customerEmail: email,
+        total: (products[selectedProduct].price * quantity).toFixed(2)
+      });
+    });
+
+    updateSummary();
+  </script>
+</body>
+</html>
