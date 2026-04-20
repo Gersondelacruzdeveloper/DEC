@@ -75,27 +75,38 @@
       box-shadow: 0 16px 40px rgba(0,0,0,0.24);
     }
 
-    #brand-logo{
-      width: 100px;
-      height: 100px;
+    #brand-logo {
+      width: 64px;
+      height: 64px;
+      flex: 0 0 64px;
+      display: grid;
       place-items: center;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
 
     #brand-logo img {
       width: 100%;
       height: 100%;
-    border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
     }
 
     .brand-copy strong {
       display: block;
       font-size: 1rem;
       letter-spacing: 0.03em;
+      margin-bottom: 3px;
     }
 
     .brand-copy span {
       color: var(--muted);
       font-size: 0.9rem;
+      line-height: 1.4;
     }
 
     .hero {
@@ -642,12 +653,11 @@
     <header class="topbar">
       <div class="brand">
         <div id="brand-logo">
-          <!-- Replace this with your logo -->
-          <img src="./images/logo.jpeg" alt="Brand logo">
+          <img src="./images/logo.jpeg" alt="Natural relief brand logo">
         </div>
         <div class="brand-copy">
-          <strong>Natural Herbal Catalog</strong>
-          <span>Modern presentation for your relief products</span>
+          <strong>Natural Herbal Relief</strong>
+          <span>Herbal products for muscle comfort and daily care</span>
         </div>
       </div>
     </header>
@@ -659,9 +669,9 @@
   <h1>Powerful natural remedies designed to relieve pain, relax muscles, and restore comfort.</h1>
 
   <p>
-    Discover our carefully crafted herbal formulas made with ingredients like Anamú roots, Ashwagandha,
-    Lemongrass, Lavender oil, and Menthol crystals. Each product is designed to target muscle pain,
-    tension, and daily discomfort while nourishing and protecting your skin.
+    Explore herbal formulas made with ingredients such as Anamú roots, Ashwagandha, Lemongrass,
+    Lavender oil, Menthol crystals, and Olive oil. Each product is focused on muscle comfort,
+    body relaxation, and daily skin care.
   </p>
 
   <div class="hero-points">
@@ -701,9 +711,8 @@
   <div>
     <h3>Product Details</h3>
     <p>
-      Each formula is carefully crafted with natural ingredients like Anamú roots, Ashwagandha, Lavender oil, 
-      and Menthol crystals to provide fast muscle relief, reduce tension, and deeply nourish the skin. 
-      Designed for real results you can feel from the first application.
+      Discover each product, its main purpose, and the ingredients that make it suitable for muscle comfort,
+      body care, and everyday relief.
     </p>
   </div>
 </div>
@@ -714,7 +723,7 @@
         <div class="section-title">
           <div>
             <h3>Product details</h3>
-            <p>A more visual, trustworthy, and attractive description so the customer understands the value of the product right away.</p>
+            <p>Clear product information with benefits, ingredients, and everyday uses.</p>
           </div>
         </div>
 
@@ -751,7 +760,7 @@
         badge: "Muscle pain",
         shortText: "Ideal for muscle pain, sprains, and muscle tension with a refreshing herbal sensation.",
         description:
-          "Lemongrass Forte Tonic was designed to communicate strong, fresh, natural relief. It is ideal for muscle pain, sprains, and muscle tension, with a blend created for people seeking body comfort after a demanding day, physical activity, or built-up tension. Its profile combines herbal notes, a refreshing feel, and a more premium image so the product looks as good as it promises to feel.",
+          "Lemongrass Forte Tonic is made for muscle pain, sprains, and body tension. Its blend of herbal ingredients and menthol delivers a fresh sensation that works well after physical activity, long workdays, or areas of built-up tension.",
         tags: ["Lemongrass", "Crystal menthol", "Body use", "Refreshing sensation"],
         benefits: [
           {
@@ -764,11 +773,11 @@
           },
           {
             title: "Fresh herbal profile",
-            text: "The presence of lemongrass and menthol brings a lighter, revitalizing sensation."
+            text: "Lemongrass and menthol provide a cooling, revitalizing sensation on the skin."
           },
           {
-            title: "Premium image",
-            text: "The presentation highlights the ingredients better so the customer understands its value instantly."
+            title: "Daily comfort",
+            text: "A practical option for people who want refreshing support as part of their body care routine."
           }
         ],
         ingredients: [
@@ -789,12 +798,12 @@
         badge: "Soft & soothing",
         shortText: "Made for little ones, with a softer, more hydrating, and comforting feel.",
         description:
-          "Natural Lavender Baby Ointment is focused on a gentler care experience. It helps with muscle discomfort with a soft sensation, while also bringing hydration and comfort to the skin. It was also presented as ideal for nasal congestion, creating a more complete wellness experience. The blend with olive oil and lavender helps communicate tenderness, softness, and protection, perfect for a family-friendly and natural-looking line.",
-        tags: ["For little ones", "Lavender", "Hydration", "Nasal congestion"],
+          "Natural Lavender Baby Ointment offers a gentler care experience with a soft, comforting feel. It supports skin hydration and daily comfort, while lavender and olive oil help create a soothing body care routine.",
+        tags: ["Gentle care", "Lavender", "Hydration", "Soft comfort"],
         benefits: [
           {
             title: "Gentle care",
-            text: "A softer, more trustworthy presentation for those looking for a gentle product."
+            text: "A softer formula for anyone looking for gentle daily body care."
           },
           {
             title: "Skin hydration",
@@ -802,11 +811,11 @@
           },
           {
             title: "Comforting lavender",
-            text: "Lavender reinforces a sense of calm and well-being throughout the product experience."
+            text: "Lavender supports a calming, relaxing experience during use."
           },
           {
-            title: "Versatile use",
-            text: "It also stands out as ideal for nasal congestion within a natural care routine."
+            title: "Daily comfort",
+            text: "Suitable for a gentle wellness routine focused on comfort and skin care."
           }
         ],
         ingredients: [
@@ -827,12 +836,12 @@
         badge: "Extra olive oil",
         shortText: "Focused on muscle discomfort and deep hydration, especially for dry or tired feet.",
         description:
-          "Natural Olive Forte Ointment was presented as a richer, more nourishing option. It is aimed at muscle discomfort, but it also communicates deep hydration for the feet, which gives it a very clear and easy-to-sell benefit. The extra olive oil helps position it as a more intensive formula for nourishment and softness, ideal for people who want body relief and better-cared-for skin at the same time.",
+          "Natural Olive Forte Ointment is a richer option for muscle discomfort and deep hydration. It is especially useful for dry or tired feet, while the olive oil blend supports nourishment, softness, and everyday body care.",
         tags: ["Olive forte", "Dry feet", "Deep care", "Lavender"],
         benefits: [
           {
             title: "Muscle relief",
-            text: "Helps communicate a feeling of support for areas with fatigue or tension."
+            text: "Helps support areas affected by fatigue, soreness, or tension."
           },
           {
             title: "Deep hydration",
@@ -840,11 +849,11 @@
           },
           {
             title: "Extra olive oil",
-            text: "That detail raises the perception of the product as a richer, more carefully crafted formula."
+            text: "Extra olive oil supports a richer texture and better skin nourishment."
           },
           {
-            title: "Elegant presentation",
-            text: "It was designed to look premium, natural, and visually easy to fall in love with."
+            title: "Soft skin feel",
+            text: "Leaves the skin feeling softer while supporting body comfort and hydration."
           }
         ],
         ingredients: [
